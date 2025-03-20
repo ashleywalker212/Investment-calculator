@@ -1,5 +1,6 @@
 import React from "react";
 import RealEstateCalculator from "./RealEstateCalculator";
+import Footer from "./components/footer";
 
 function App() {
   return (
