@@ -60,26 +60,40 @@ export default function RealEstateCalculator() {
   const { noi, capRate, cashFlow } = calculateResults();
 
   return (
-    <div>
+    <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
       <h2>Real Estate Investment Calculator</h2>
-      <div>
-        {Object.keys(inputs).map((key) => (
+      <div style={{ display: "grid", gap: "10px" }}>
+        {[
+          { key: "propertyPrice", label: "Property Price ($)" },
+          { key: "downPayment", label: "Down Payment (%)" },
+          { key: "loanRate", label: "Loan Interest Rate (%)" },
+          { key: "loanTerm", label: "Loan Term (Years)" },
+          { key: "rent", label: "Monthly Rental Income ($)" },
+          { key: "propertyTax", label: "Property Tax (Annual, $)" },
+          { key: "insurance", label: "Insurance (Annual, $)" },
+          { key: "maintenance", label: "Maintenance (% of Annual Rent)" },
+          { key: "vacancyRate", label: "Vacancy Rate (%)" },
+          { key: "hoaFees", label: "HOA Fees (Annual, $)" },
+          { key: "managementFee", label: "Management Fee (%)" },
+          { key: "utilities", label: "Utilities (Annual, $)" },
+        ].map(({ key, label }) => (
           <div key={key}>
-            <label>{key.replace(/([A-Z])/g, ' $1')}</label>
+            <label>{label}</label>
             <input
               type="number"
               name={key}
               value={inputs[key]}
               onChange={handleChange}
-              placeholder={`Enter ${key.replace(/([A-Z])/g, ' $1')}`}
+              placeholder={label}
+              style={{ width: "100%", padding: "5px", marginBottom: "5px" }}
             />
           </div>
         ))}
       </div>
-      <div>
-        <p>Net Operating Income (NOI): ${noi.toFixed(2)}</p>
-        <p>Cap Rate: {capRate.toFixed(2)}%</p>
-        <p>Cash Flow: ${cashFlow.toFixed(2)}</p>
+      <div style={{ marginTop: "20px", padding: "10px", border: "1px solid #ddd", borderRadius: "5px" }}>
+        <p><strong>Net Operating Income (NOI):</strong> ${noi.toFixed(2)}</p>
+        <p><strong>Capitalization Rate (Cap Rate):</strong> {capRate.toFixed(2)}%</p>
+        <p><strong>Cash Flow:</strong> ${cashFlow.toFixed(2)}</p>
       </div>
     </div>
   );
